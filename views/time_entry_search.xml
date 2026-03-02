@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_search_view" model="ir.ui.view">
+        <field name="name">time.entry.search</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <search string="Search Time Entries">
+                <field name="name" string="Description"/>
+                <field name="partner_id" string="Kunde"/>
+                <field name="task_id"/>
+                <field name="project_id"/>
+                <field name="user_id"/>
+
+                <!-- Filters -->
+                <filter string="My Entries" name="my_entries"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter string="Running" name="running"
+                        domain="[('state', '=', 'running')]"/>
+                <filter string="This Week" name="this_week"
+                        domain="[('start_datetime', '&gt;=', (context_today() + relativedelta(weeks=-1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Month" name="this_month"
+                        domain="[('start_datetime', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+
+                <separator/>
+
+                <!-- Group By -->
+                <filter string="Kunde" name="group_partner"
+                        context="{'group_by': 'partner_id'}"/>
+                <filter string="Task" name="group_task"
+                        context="{'group_by': 'task_id'}"/>
+                <filter string="Project" name="group_project"
+                        context="{'group_by': 'project_id'}"/>
+                <filter string="User" name="group_user"
+                        context="{'group_by': 'user_id'}"/>
+                <filter string="Week" name="group_week"
+                        context="{'group_by': 'start_datetime:week'}"/>
+                <filter string="Month" name="group_month"
+                        context="{'group_by': 'start_datetime:month'}"/>
+                <filter string="Status" name="group_state"
+                        context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_graph_view" model="ir.ui.view">
+        <field name="name">time.entry.graph</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <graph string="Time per Task" type="bar" stacked="false">
+                <field name="task_id" type="row"/>
+                <field name="duration" type="measure" string="Hours"/>
+            </graph>
+        </field>
+    </record>
+</odoo>

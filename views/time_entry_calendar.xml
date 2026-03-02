@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_calendar_view" model="ir.ui.view">
+        <field name="name">time.entry.calendar</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <calendar string="Time Entries"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="task_id"
+                      mode="month"
+                      quick_create="false">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="duration_display"/>
+                <field name="task_id" filters="1"/>
+                <field name="user_id" filters="1" avatar_field="avatar_128"/>
+            </calendar>
+        </field>
+    </record>
+</odoo>

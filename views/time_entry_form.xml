@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_form_view" model="ir.ui.view">
+        <field name="name">time.entry.form</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <form string="Time Entry">
+                <header>
+                    <button
+                        name="action_start"
+                        string="Start"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_stop"
+                        string="Stop"
+                        type="object"
+                        class="btn-danger"
+                        invisible="state != 'running'"
+                    />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,running,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="employee_id"/>
+                            <field name="project_id"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="task_id"/>
+                        </group>
+                        <group string="Time">
+                            <field name="start_datetime" readonly="1"/>
+                            <field name="end_datetime" readonly="1"/>
+                            <field name="duration_display" readonly="1" string="Duration"/>
+                        </group>
+                    </group>
+                    <group invisible="not timesheet_id">
+                        <group string="Timesheet">
+                            <field name="timesheet_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="note" placeholder="Additional notes…"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

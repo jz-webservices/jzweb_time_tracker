@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_list_view" model="ir.ui.view">
+        <field name="name">time.entry.list</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <list string="Time Entries"
+                  decoration-success="state == 'running'"
+                  decoration-muted="state == 'draft'">
+                <field name="name"/>
+                <field name="user_id" optional="show"/>
+                <field name="project_id" optional="show"/>
+                <field name="task_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="duration_display" string="Duration"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'running'"
+                       decoration-info="state == 'draft'"
+                       decoration-muted="state == 'done'"/>
+            </list>
+        </field>
+    </record>
+</odoo>

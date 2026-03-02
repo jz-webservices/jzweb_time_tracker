@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="time_entry_pivot_view" model="ir.ui.view">
+        <field name="name">time.entry.pivot</field>
+        <field name="model">time.entry</field>
+        <field name="arch" type="xml">
+            <pivot string="Time by Task" disable_linking="false">
+                <!-- Rows: Kunde → Project → Task -->
+                <field name="partner_id" type="row"/>
+                <field name="project_id" type="row"/>
+                <field name="task_id" type="row"/>
+                <!-- Columns: Week date -->
+                <field name="start_datetime" interval="week" type="col"/>
+                <!-- Measure: total hours -->
+                <field name="duration" type="measure" string="Hours"/>
+            </pivot>
+        </field>
+    </record>
+</odoo>

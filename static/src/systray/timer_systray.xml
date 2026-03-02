@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <!-- Systray Icon -->
+    <t t-name="jzweb_time_tracker.TimerSystray">
+        <li class="o_nav_entry d-flex align-items-center gap-1 px-2"
+            t-on-click="onClick"
+            style="cursor:pointer; user-select:none;"
+            t-att-title="state.running ? 'Timer stoppen' : 'Timer starten'">
+            <t t-if="state.running">
+                <i class="fa fa-stop-circle text-danger" style="font-size:17px;"/>
+                <span class="text-danger fw-bold small" t-esc="state.elapsed"/>
+            </t>
+            <t t-else="">
+                <i class="fa fa-play-circle" style="font-size:17px;"/>
+            </t>
+        </li>
+    </t>
+
+    <!-- Quick-Start Dialog -->
+    <t t-name="jzweb_time_tracker.TimerStartDialog">
+        <Dialog title="'Timer starten'">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Beschreibung</label>
+                <input type="text"
+                       class="form-control"
+                       t-att-value="state.description"
+                       t-on-change="onDescriptionChange"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Projekt</label>
+                <select class="form-select" t-on-change="onProjectChange">
+                    <option value="">— Projekt wählen —</option>
+                    <t t-foreach="state.projects" t-as="proj" t-key="proj.id">
+                        <option t-att-value="proj.id"
+                                t-att-selected="state.projectId === proj.id"
+                                t-esc="proj.name"/>
+                    </t>
+                </select>
+            </div>
+            <t t-if="state.tasks.length">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Task</label>
+                    <select class="form-select" t-on-change="onTaskChange">
+                        <option value="">— Task wählen (optional) —</option>
+                        <t t-foreach="state.tasks" t-as="task" t-key="task.id">
+                            <option t-att-value="task.id"
+                                    t-att-selected="state.taskId === task.id"
+                                    t-esc="task.name"/>
+                        </t>
+                    </select>
+                </div>
+            </t>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary"
+                        t-att-disabled="state.loading"
+                        t-on-click="onStart">
+                    <i class="fa fa-play me-1"/>
+                    Start
+                </button>
+                <button class="btn btn-secondary" t-on-click="onCancel">
+                    Abbrechen
+                </button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
