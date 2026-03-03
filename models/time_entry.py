@@ -32,11 +32,9 @@ class TimeEntry(models.Model):
     )
     start_datetime = fields.Datetime(
         string='Start',
-        readonly=True,
     )
     end_datetime = fields.Datetime(
         string='End',
-        readonly=True,
     )
     duration = fields.Float(
         string='Duration (h)',
@@ -152,6 +150,23 @@ class TimeEntry(models.Model):
         self.ensure_one()
         now = fields.Datetime.now()
         self.write({'state': 'done', 'end_datetime': now})
+        self._create_timesheet()
+
+    def action_complete(self):
+        """Manually complete a draft entry with already-set start/end times."""
+        self.ensure_one()
+        if not self.start_datetime or not self.end_datetime:
+            raise ValidationError(
+                'Bitte Start- und Endzeit angeben, um den Eintrag abzuschließen.'
+            )
+        if self.end_datetime <= self.start_datetime:
+            raise ValidationError(
+                'Die Endzeit muss nach der Startzeit liegen.'
+            )
+        self.state = 'done'
+        self._create_timesheet()
+
+    def _create_timesheet(self):
         if self.project_id and self.employee_id:
             timesheet = self.env['account.analytic.line'].create({
                 'name': self.name,
@@ -159,6 +174,6 @@ class TimeEntry(models.Model):
                 'task_id': self.task_id.id if self.task_id else False,
                 'employee_id': self.employee_id.id,
                 'unit_amount': self.duration,
-                'date': now.date(),
+                'date': (self.end_datetime or fields.Datetime.now()).date(),
             })
             self.timesheet_id = timesheet

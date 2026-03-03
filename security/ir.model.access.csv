@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_time_entry_user,time.entry user,model_time_entry,jzweb_time_tracker.group_user,1,1,1,1
-access_time_entry_manager,time.entry manager,model_time_entry,jzweb_time_tracker.group_manager,1,1,1,1
-access_analytic_line_tt_user,analytic.line tt user,analytic.model_account_analytic_line,jzweb_time_tracker.group_user,1,0,0,0
-access_analytic_line_tt_manager,analytic.line tt manager,analytic.model_account_analytic_line,jzweb_time_tracker.group_manager,1,0,0,0
+access_time_entry_user,time.entry user,model_time_entry,time_tracker.group_user,1,1,1,1
+access_time_entry_manager,time.entry manager,model_time_entry,time_tracker.group_manager,1,1,1,1
+access_analytic_line_tt_user,analytic.line tt user,analytic.model_account_analytic_line,time_tracker.group_user,1,0,0,0
+access_analytic_line_tt_manager,analytic.line tt manager,analytic.model_account_analytic_line,time_tracker.group_manager,1,0,0,0

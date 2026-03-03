@@ -8,10 +8,17 @@
                 <header>
                     <button
                         name="action_start"
-                        string="Start"
+                        string="Timer starten"
                         type="object"
                         class="btn-primary"
-                        invisible="state != 'draft'"
+                        invisible="state != 'draft' or start_datetime"
+                    />
+                    <button
+                        name="action_complete"
+                        string="Abschließen"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft' or not start_datetime"
                     />
                     <button
                         name="action_stop"
@@ -33,8 +40,8 @@
                             <field name="task_id"/>
                         </group>
                         <group string="Time">
-                            <field name="start_datetime" readonly="1"/>
-                            <field name="end_datetime" readonly="1"/>
+                            <field name="start_datetime" readonly="state != 'draft'"/>
+                            <field name="end_datetime" readonly="state != 'draft'"/>
                             <field name="duration_display" readonly="1" string="Duration"/>
                         </group>
                     </group>

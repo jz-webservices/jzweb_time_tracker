@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <!-- Systray Icon -->
-    <t t-name="jzweb_time_tracker.TimerSystray">
+    <t t-name="time_tracker.TimerSystray">
         <li class="o_nav_entry d-flex align-items-center gap-1 px-2"
             t-on-click="onClick"
             style="cursor:pointer; user-select:none;"
@@ -18,7 +18,7 @@
     </t>
 
     <!-- Quick-Start Dialog -->
-    <t t-name="jzweb_time_tracker.TimerStartDialog">
+    <t t-name="time_tracker.TimerStartDialog">
         <Dialog title="'Timer starten'">
             <div class="mb-3">
                 <label class="form-label fw-bold">Beschreibung</label>

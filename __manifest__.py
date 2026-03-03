@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '19.0.1.0.0',
+    'version': '1.0.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -9,11 +9,11 @@
         duration are calculated automatically. A block appears in the
         calendar for each time entry.
     """,
-    'author': 'jz-webservices',
+    'author': 'Time Tracker',
     'license': 'LGPL-3',
     'depends': ['base', 'project', 'calendar', 'hr_timesheet'],
     'data': [
-        'security/jzweb_time_tracker_security.xml',
+        'security/time_tracker_security.xml',
         'security/ir.model.access.csv',
         'views/time_entry_search.xml',
         'views/time_entry_form.xml',
@@ -25,8 +25,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'jzweb_time_tracker/static/src/systray/timer_systray.js',
-            'jzweb_time_tracker/static/src/systray/timer_systray.xml',
+            'time_tracker/static/src/systray/timer_systray.js',
+            'time_tracker/static/src/systray/timer_systray.xml',
         ],
     },
     'installable': True,

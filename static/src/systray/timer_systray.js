@@ -9,7 +9,7 @@ import { user } from "@web/core/user";
 // ── Quick-Start Dialog ────────────────────────────────────────────────────────
 
 class TimerStartDialog extends Component {
-    static template = "jzweb_time_tracker.TimerStartDialog";
+    static template = "time_tracker.TimerStartDialog";
     static components = { Dialog };
     static props = {
         close: Function,
@@ -85,7 +85,7 @@ class TimerStartDialog extends Component {
 // ── Systray Component ─────────────────────────────────────────────────────────
 
 class TimerSystray extends Component {
-    static template = "jzweb_time_tracker.TimerSystray";
+    static template = "time_tracker.TimerSystray";
     static props = {};
 
     setup() {
@@ -163,6 +163,6 @@ class TimerSystray extends Component {
     }
 }
 
-registry.category("systray").add("jzweb_time_tracker.timer_systray", {
+registry.category("systray").add("time_tracker.timer_systray", {
     Component: TimerSystray,
 }, { sequence: 1 });

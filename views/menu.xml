@@ -49,43 +49,43 @@
 
     <!-- Top-Level Menu -->
     <menuitem
-        id="menu_jzweb_time_tracker_root"
+        id="menu_time_tracker_root"
         name="Time Tracker"
         sequence="90"
-        web_icon="jzweb_time_tracker,static/description/icon.svg"
+        web_icon="time_tracker,static/description/icon.svg"
     />
 
     <!-- Sub-Menus -->
     <menuitem
         id="menu_time_entry_my"
         name="My Entries"
-        parent="menu_jzweb_time_tracker_root"
+        parent="menu_time_tracker_root"
         action="action_time_entry_my"
         sequence="10"
-        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
+        groups="time_tracker.group_user,time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_all"
         name="All Entries"
-        parent="menu_jzweb_time_tracker_root"
+        parent="menu_time_tracker_root"
         action="action_time_entry_all"
         sequence="20"
-        groups="jzweb_time_tracker.group_manager"
+        groups="time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_calendar"
         name="Calendar"
-        parent="menu_jzweb_time_tracker_root"
+        parent="menu_time_tracker_root"
         action="action_time_entry_calendar"
         sequence="30"
-        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
+        groups="time_tracker.group_user,time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_report"
         name="Auswertung"
-        parent="menu_jzweb_time_tracker_root"
+        parent="menu_time_tracker_root"
         action="action_time_entry_report"
         sequence="40"
-        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
+        groups="time_tracker.group_user,time_tracker.group_manager"
     />
 </odoo>

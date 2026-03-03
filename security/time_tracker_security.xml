@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Category -->
-    <record id="module_jzweb_time_tracker_category" model="ir.module.category">
+    <record id="module_time_tracker_category" model="ir.module.category">
         <field name="name">Time Tracker</field>
         <field name="sequence">20</field>
     </record>
@@ -17,7 +17,7 @@
 
     <record id="group_manager" model="res.groups">
         <field name="name">Manager</field>
-        <field name="implied_ids" eval="[(4, ref('jzweb_time_tracker.group_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('time_tracker.group_user'))]"/>
         <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         <field name="comment">
             Can view and manage all users' time entries.
@@ -31,7 +31,7 @@
         <field name="name">Time Entry: Users see own entries</field>
         <field name="model_id" ref="model_time_entry"/>
         <field name="domain_force">[('user_id', '=', user.id)]</field>
-        <field name="groups" eval="[(4, ref('jzweb_time_tracker.group_user'))]"/>
+        <field name="groups" eval="[(4, ref('time_tracker.group_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
         <field name="perm_create" eval="True"/>
@@ -43,7 +43,7 @@
         <field name="name">Time Entry: Managers see all entries</field>
         <field name="model_id" ref="model_time_entry"/>
         <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4, ref('jzweb_time_tracker.group_manager'))]"/>
+        <field name="groups" eval="[(4, ref('time_tracker.group_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
         <field name="perm_create" eval="True"/>
