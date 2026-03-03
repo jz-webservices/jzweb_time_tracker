@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -9,7 +9,7 @@
         duration are calculated automatically. A block appears in the
         calendar for each time entry.
     """,
-    'author': 'Time Tracker',
+    'author': 'jz-webservices',
     'license': 'LGPL-3',
     'depends': ['base', 'project', 'calendar', 'hr_timesheet'],
     'data': [
