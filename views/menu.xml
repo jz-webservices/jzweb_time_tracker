@@ -62,7 +62,7 @@
         parent="menu_time_tracker_root"
         action="action_time_entry_my"
         sequence="10"
-        groups="time_tracker.group_user,time_tracker.group_manager"
+        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_all"
@@ -70,7 +70,7 @@
         parent="menu_time_tracker_root"
         action="action_time_entry_all"
         sequence="20"
-        groups="time_tracker.group_manager"
+        groups="jzweb_time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_calendar"
@@ -78,7 +78,7 @@
         parent="menu_time_tracker_root"
         action="action_time_entry_calendar"
         sequence="30"
-        groups="time_tracker.group_user,time_tracker.group_manager"
+        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
     />
     <menuitem
         id="menu_time_entry_report"
@@ -86,6 +86,6 @@
         parent="menu_time_tracker_root"
         action="action_time_entry_report"
         sequence="40"
-        groups="time_tracker.group_user,time_tracker.group_manager"
+        groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
     />
 </odoo>
