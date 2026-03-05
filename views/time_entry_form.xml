@@ -40,8 +40,8 @@
                             <field name="task_id"/>
                         </group>
                         <group string="Time">
-                            <field name="start_datetime" readonly="state != 'draft'"/>
-                            <field name="end_datetime" readonly="state != 'draft'"/>
+                            <field name="start_datetime" readonly="state == 'running'"/>
+                            <field name="end_datetime" readonly="state == 'running'"/>
                             <field name="duration_display" readonly="1" string="Duration"/>
                         </group>
                     </group>
