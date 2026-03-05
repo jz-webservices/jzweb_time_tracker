@@ -25,8 +25,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'time_tracker/static/src/systray/timer_systray.js',
-            'time_tracker/static/src/systray/timer_systray.xml',
+            'jzweb_time_tracker/static/src/systray/timer_systray.js',
+            'jzweb_time_tracker/static/src/systray/timer_systray.xml',
         ],
     },
     'installable': True,
