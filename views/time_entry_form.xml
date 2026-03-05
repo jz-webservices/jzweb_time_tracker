@@ -11,14 +11,7 @@
                         string="Timer starten"
                         type="object"
                         class="btn-primary"
-                        invisible="state != 'draft' or start_datetime"
-                    />
-                    <button
-                        name="action_complete"
-                        string="Abschließen"
-                        type="object"
-                        class="btn-primary"
-                        invisible="state != 'draft' or not start_datetime"
+                        invisible="state != 'draft'"
                     />
                     <button
                         name="action_stop"
