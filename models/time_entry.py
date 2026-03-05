@@ -146,6 +146,17 @@ class TimeEntry(models.Model):
             'end_datetime': False,
         })
 
+    def write(self, vals):
+        res = super().write(vals)
+        if 'start_datetime' in vals or 'end_datetime' in vals:
+            for rec in self:
+                if rec.state == 'done' and rec.timesheet_id:
+                    rec.timesheet_id.write({
+                        'unit_amount': rec.duration,
+                        'date': (rec.end_datetime or rec.start_datetime).date(),
+                    })
+        return res
+
     def action_stop(self):
         self.ensure_one()
         now = fields.Datetime.now()
