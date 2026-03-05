@@ -164,7 +164,6 @@ class TimeEntry(models.Model):
         self._create_timesheet()
 
     def action_complete(self):
-        """Manually complete a draft entry with already-set start/end times."""
         self.ensure_one()
         if not self.start_datetime or not self.end_datetime:
             raise ValidationError(
@@ -176,17 +175,6 @@ class TimeEntry(models.Model):
             )
         self.state = 'done'
         self._create_timesheet()
-
-    def write(self, vals):
-        res = super().write(vals)
-        if 'start_datetime' in vals or 'end_datetime' in vals:
-            for rec in self:
-                if rec.state == 'done' and rec.timesheet_id:
-                    rec.timesheet_id.write({
-                        'unit_amount': rec.duration,
-                        'date': (rec.end_datetime or fields.Datetime.now()).date(),
-                    })
-        return res
 
     def _create_timesheet(self):
         if self.project_id and self.employee_id:
