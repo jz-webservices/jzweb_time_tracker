@@ -170,7 +170,13 @@ class TimeEntry(models.Model):
             total_seconds = now.hour * 3600 + now.minute * 60 + now.second
             if now.microsecond > 0:
                 total_seconds += 1
-            rounded_minutes = math.ceil(total_seconds / 60.0 / rounding) * rounding
+            if rounding == 30:
+                # Round to :15 and :45 clock marks
+                offset = 15
+                total_minutes = total_seconds / 60.0
+                rounded_minutes = math.ceil((total_minutes - offset) / 30) * 30 + offset
+            else:
+                rounded_minutes = math.ceil(total_seconds / 60.0 / rounding) * rounding
             now = now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(minutes=rounded_minutes)
         self.write({'state': 'done', 'end_datetime': now})
         self._create_timesheet()
