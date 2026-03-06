@@ -88,4 +88,5 @@
         sequence="40"
         groups="jzweb_time_tracker.group_user,jzweb_time_tracker.group_manager"
     />
+
 </odoo>

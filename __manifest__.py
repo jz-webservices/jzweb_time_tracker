@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '1.3.0',
+    'version': '19.0.1.3.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -15,7 +15,6 @@
     'data': [
         'security/time_tracker_security.xml',
         'security/ir.model.access.csv',
-        'views/res_config_settings_views.xml',
         'views/time_entry_search.xml',
         'views/time_entry_form.xml',
         'views/time_entry_list.xml',
