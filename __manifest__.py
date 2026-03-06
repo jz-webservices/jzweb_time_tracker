@@ -22,6 +22,7 @@
         'views/time_entry_pivot.xml',
         'views/time_entry_graph.xml',
         'views/menu.xml',
+        'views/res_config_settings_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
