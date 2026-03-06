@@ -1,3 +1,6 @@
+import math
+from datetime import timedelta
+
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -160,6 +163,15 @@ class TimeEntry(models.Model):
     def action_stop(self):
         self.ensure_one()
         now = fields.Datetime.now()
+        rounding = int(self.env['ir.config_parameter'].sudo().get_param(
+            'jzweb_time_tracker.rounding_minutes', '0'
+        ))
+        if rounding > 0:
+            total_seconds = now.hour * 3600 + now.minute * 60 + now.second
+            if now.microsecond > 0:
+                total_seconds += 1
+            rounded_minutes = math.ceil(total_seconds / 60.0 / rounding) * rounding
+            now = now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(minutes=rounded_minutes)
         self.write({'state': 'done', 'end_datetime': now})
         self._create_timesheet()
 
