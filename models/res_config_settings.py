@@ -12,7 +12,7 @@ class ResConfigSettings(models.TransientModel):
             ('15', '15 Minuten'),
             ('30', '30 Minuten'),
         ],
-        string='Stoppzeit aufrunden',
+        string='Erfasste Dauer aufrunden',
         default='0',
         config_parameter='jzweb_time_tracker.rounding_minutes',
     )

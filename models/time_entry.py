@@ -1,5 +1,4 @@
 import math
-from datetime import timedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -149,36 +148,31 @@ class TimeEntry(models.Model):
             'end_datetime': False,
         })
 
+    def _get_rounded_unit_amount(self, duration_hours):
+        """Return duration in hours, rounded up to the nearest N minutes if configured."""
+        rounding = int(self.env['ir.config_parameter'].sudo().get_param(
+            'jzweb_time_tracker.rounding_minutes', '0'
+        ))
+        if rounding <= 0:
+            return duration_hours
+        total_minutes = duration_hours * 60.0
+        rounded_minutes = math.ceil(total_minutes / rounding) * rounding
+        return rounded_minutes / 60.0
+
     def write(self, vals):
         res = super().write(vals)
         if 'start_datetime' in vals or 'end_datetime' in vals:
             for rec in self:
                 if rec.state == 'done' and rec.timesheet_id:
                     rec.timesheet_id.write({
-                        'unit_amount': rec.duration,
+                        'unit_amount': rec._get_rounded_unit_amount(rec.duration),
                         'date': (rec.end_datetime or rec.start_datetime).date(),
                     })
         return res
 
     def action_stop(self):
         self.ensure_one()
-        now = fields.Datetime.now()
-        rounding = int(self.env['ir.config_parameter'].sudo().get_param(
-            'jzweb_time_tracker.rounding_minutes', '0'
-        ))
-        if rounding > 0:
-            total_seconds = now.hour * 3600 + now.minute * 60 + now.second
-            if now.microsecond > 0:
-                total_seconds += 1
-            if rounding == 30:
-                # Round to :15 and :45 clock marks
-                offset = 15
-                total_minutes = total_seconds / 60.0
-                rounded_minutes = math.ceil((total_minutes - offset) / 30) * 30 + offset
-            else:
-                rounded_minutes = math.ceil(total_seconds / 60.0 / rounding) * rounding
-            now = now.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(minutes=rounded_minutes)
-        self.write({'state': 'done', 'end_datetime': now})
+        self.write({'state': 'done', 'end_datetime': fields.Datetime.now()})
         self._create_timesheet()
 
     def action_complete(self):
@@ -201,7 +195,7 @@ class TimeEntry(models.Model):
                 'project_id': self.project_id.id,
                 'task_id': self.task_id.id if self.task_id else False,
                 'employee_id': self.employee_id.id,
-                'unit_amount': self.duration,
+                'unit_amount': self._get_rounded_unit_amount(self.duration),
                 'date': (self.end_datetime or fields.Datetime.now()).date(),
             })
             self.timesheet_id = timesheet
