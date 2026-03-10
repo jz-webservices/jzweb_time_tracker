@@ -8,8 +8,8 @@
             <xpath expr="//form" position="inside">
                 <app string="Time Tracker" name="jzweb_time_tracker">
                     <block title="Zeiterfassung">
-                        <setting string="Stoppzeit aufrunden"
-                                 help="Rundet die Stoppzeit auf das nächste Intervall auf (z.B. 08:13 → 08:15 bei 15-Minuten-Rundung).">
+                        <setting string="Erfasste Dauer aufrunden"
+                                 help="Rundet die gebuchte Dauer im Projekt-Timesheet auf das nächste Intervall auf (z.B. 1h 13min → 1h 15min bei 15-Minuten-Rundung). Die Stoppzeit im TimeTracker bleibt exakt.">
                             <field name="time_tracker_rounding"/>
                         </setting>
                     </block>
