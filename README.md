@@ -8,7 +8,7 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 - **Projekt & Aufgabe**: Beim Starten optional Projekt und Aufgabe auswählen
 - **Automatische Timesheet-Buchung**: Beim Stoppen wird automatisch ein Eintrag in der Projektzeit (`account.analytic.line`) angelegt
 - **Kalenderansicht**: Alle Zeiteinträge als Kalenderblöcke sichtbar
-- **Listen-, Pivot- und Graphansicht**: Auswertungen nach Projekt, Mitarbeiter, Zeitraum
+- **Listen-, Pivot- und Graphansicht**: Auswertungen nach Projekt, Mitarbeiter, Kunde und Zeitraum
 - **Dauern-Rundung**: Die exakte Stoppzeit bleibt erhalten – die gebuchte Dauer im Timesheet wird optional aufgerundet
 
 ## Einstellungen
