@@ -189,6 +189,13 @@ class TimeEntry(models.Model):
         self._create_timesheet()
 
     def _create_timesheet(self):
+        if self.timesheet_id:
+            self.timesheet_id.write({
+                'name': self.name,
+                'unit_amount': self._get_rounded_unit_amount(self.duration),
+                'date': (self.end_datetime or fields.Datetime.now()).date(),
+            })
+            return
         if self.project_id and self.employee_id:
             timesheet = self.env['account.analytic.line'].create({
                 'name': self.name,

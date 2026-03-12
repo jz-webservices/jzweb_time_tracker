@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '19.0.1.6.0',
+    'version': '19.0.1.7.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
