@@ -9,6 +9,7 @@
     <!-- Groups -->
     <record id="group_user" model="res.groups">
         <field name="name">User</field>
+        <field name="category_id" ref="module_time_tracker_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">
             Can create and manage their own time entries.
@@ -17,6 +18,7 @@
 
     <record id="group_manager" model="res.groups">
         <field name="name">Manager</field>
+        <field name="category_id" ref="module_time_tracker_category"/>
         <field name="implied_ids" eval="[(4, ref('jzweb_time_tracker.group_user'))]"/>
         <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         <field name="comment">
