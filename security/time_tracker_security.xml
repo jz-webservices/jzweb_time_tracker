@@ -26,6 +26,11 @@
         </field>
     </record>
 
+    <!-- Automatically grant Time Tracker User rights to all internal users -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('jzweb_time_tracker.group_user'))]"/>
+    </record>
+
     <!-- Record Rules -->
 
     <!-- Users: read/write/create/delete only own records -->
