@@ -1,5 +1,7 @@
 # jzweb_time_tracker
 
+**Odoo-Version: 19.0**
+
 Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins Projekt-Timesheet.
 
 ## Funktionen
@@ -25,12 +27,27 @@ Unter **Einstellungen → Time Tracker**:
 
 > Die Stoppzeit im TimeTracker selbst bleibt immer exakt. Die Rundung wirkt nur auf den `unit_amount`-Wert im Projekt-Timesheet.
 
-## Abhängigkeiten
+## Voraussetzungen
 
-- `base`
-- `project`
-- `calendar`
-- `hr_timesheet`
+- **Odoo 19.0** (andere Versionen werden nicht unterstützt)
+- Die folgenden Odoo-Module müssen installiert sein:
+
+| Modul | Beschreibung |
+|---|---|
+| `base` | Odoo-Grundmodul (immer vorhanden) |
+| `project` | Projektverwaltung |
+| `calendar` | Kalenderansicht |
+| `hr_timesheet` | Projekt-Timesheet & Mitarbeiterverwaltung |
+
+> **Wichtig:** `hr_timesheet` bringt die Mitarbeiterverwaltung (`hr`) mit. Jeder Benutzer, der den Time Tracker verwenden soll, muss unter **Mitarbeiter** als Mitarbeiter angelegt und mit seinem Odoo-Benutzer verknüpft sein. Fehlt diese Verknüpfung, wird kein Timesheet-Eintrag erstellt.
+
+## Installation
+
+1. Den Ordner `jzweb_time_tracker` in das Odoo-`addons`-Verzeichnis kopieren.
+2. Odoo neu starten.
+3. Im Odoo-Backend den **Entwicklermodus** aktivieren (Einstellungen → Allgemein → Entwicklermodus).
+4. Unter **Apps → App-Liste aktualisieren** klicken.
+5. Nach `Time Tracker` suchen und installieren.
 
 ## Versionshistorie
 

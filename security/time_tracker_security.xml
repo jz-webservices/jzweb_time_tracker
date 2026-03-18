@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Category -->
-    <record id="module_time_tracker_category" model="ir.module.category">
-        <field name="name">Time Tracker</field>
-        <field name="sequence">20</field>
-    </record>
-
     <!-- Groups -->
     <record id="group_user" model="res.groups">
         <field name="name">User</field>
@@ -22,6 +16,11 @@
         <field name="comment">
             Can view and manage all users' time entries.
         </field>
+    </record>
+
+    <!-- Automatically grant Time Tracker User rights to all internal users -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('jzweb_time_tracker.group_user'))]"/>
     </record>
 
     <!-- Record Rules -->
