@@ -29,7 +29,7 @@ class TimeEntry(models.Model):
     task_id = fields.Many2one(
         'project.task',
         string='Task',
-        domain="[('project_id', '=', project_id)]",
+        domain="[('project_id', '=', project_id), ('stage_id.fold', '=', False)]",
         index=True,
     )
     start_datetime = fields.Datetime(
