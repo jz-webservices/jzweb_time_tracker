@@ -7,7 +7,7 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 ## Funktionen
 
 - **Systray-Timer**: Start/Stopp direkt aus der Odoo-Oberfläche (oben rechts)
-- **Projekt & Aufgabe**: Beim Starten optional Projekt und Aufgabe auswählen
+- **Projekt & Aufgabe**: Beim Starten optional Projekt und Aufgabe auswählen (nur offene Tasks werden angezeigt)
 - **Automatische Timesheet-Buchung**: Beim Stoppen wird automatisch ein Eintrag in der Projektzeit (`account.analytic.line`) angelegt
 - **Kalenderansicht**: Alle Zeiteinträge als Kalenderblöcke sichtbar
 - **Listen-, Pivot- und Graphansicht**: Auswertungen nach Projekt, Mitarbeiter, Kunde und Zeitraum
@@ -19,13 +19,15 @@ Unter **Einstellungen → Time Tracker**:
 
 | Option | Beschreibung |
 |---|---|
-| Keine Rundung | Dauer wird exakt ins Timesheet gebucht |
+| Keine Rundung | Dauer wird exakt ins Timesheet gebucht (Standard) |
 | 5 Minuten | Dauer wird auf die nächsten vollen 5 Min aufgerundet |
 | 10 Minuten | Dauer wird auf die nächsten vollen 10 Min aufgerundet |
 | 15 Minuten | Dauer wird auf die nächsten vollen 15 Min aufgerundet |
 | 30 Minuten | Dauer wird auf die nächsten vollen 30 Min aufgerundet |
 
 > Die Stoppzeit im TimeTracker selbst bleibt immer exakt. Die Rundung wirkt nur auf den `unit_amount`-Wert im Projekt-Timesheet.
+
+> Der Standardwert wird bei jedem Modul-Upgrade automatisch auf **Keine Rundung** zurückgesetzt.
 
 ## Voraussetzungen
 
@@ -53,6 +55,8 @@ Unter **Einstellungen → Time Tracker**:
 
 | Version | Änderung |
 |---|---|
+| 1.9.0 | Task-Dropdown filtert abgeschlossene/stornierte Tasks heraus |
+| 1.8.0 | Zeitaufrollung wird bei Upgrade automatisch auf 0 zurückgesetzt |
 | 1.6.0 | Rundung von Stoppzeit auf Timesheet-Dauer umgestellt |
 | 1.5.0 | Systray-Timer, Kalender- und Graphansicht |
 | 1.3.0 | Timesheet-Integration, Kunden-Feld, Sicherheitsrollen |
