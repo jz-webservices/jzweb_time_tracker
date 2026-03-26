@@ -12,6 +12,7 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 - **Kalenderansicht**: Alle Zeiteinträge als Kalenderblöcke sichtbar
 - **Listen-, Pivot- und Graphansicht**: Auswertungen nach Projekt, Mitarbeiter, Kunde und Zeitraum
 - **Dauern-Rundung**: Die exakte Stoppzeit bleibt erhalten – die gebuchte Dauer im Timesheet wird optional aufgerundet
+- **Manuelle Nacherfassung**: Vergessene Zeiten können nachgetragen werden – Start- und Endzeit manuell eingeben, Eintrag wird direkt als erledigt gespeichert
 
 ## Einstellungen
 
@@ -55,6 +56,7 @@ Unter **Einstellungen → Time Tracker**:
 
 | Version | Änderung |
 |---|---|
+| 1.10.0 | Manuelle Nacherfassung: Start + End manuell eingeben → direkt als erledigt speichern |
 | 1.9.0 | Task-Dropdown filtert abgeschlossene/stornierte Tasks heraus |
 | 1.8.0 | Zeitaufrollung wird bei Upgrade automatisch auf 0 zurückgesetzt |
 | 1.6.0 | Rundung von Stoppzeit auf Timesheet-Dauer umgestellt |
