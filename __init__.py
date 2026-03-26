@@ -21,4 +21,3 @@ def post_init_hook(env):
 
 def post_update_hook(env):
     _assign_group_to_internal_users(env)
-    _reset_rounding_to_zero(env)
