@@ -1,19 +1,12 @@
-/* ── Task Timer Buttons: Start = grün, Stop = rot ─────────────────────────── */
+/* ── Task Timer Buttons ────────────────────────────────────────────────────── */
 
-/* Start-Button (Standard-Selektor für XML-definierte Buttons) */
+/* Start-Button ausblenden — Timer wird über das Systray gestartet */
 .o_form_view button[name="action_timer_start"] {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
-    color: #fff !important;
-}
-.o_form_view button[name="action_timer_start"]:hover {
-    background-color: #218838 !important;
-    border-color: #1e7e34 !important;
+    display: none !important;
 }
 
-/* Stop-Button */
-.o_form_view button[name="action_timer_stop"],
-.o_form_view .o_statusbar_buttons button[name="action_timer_stop"] {
+/* Stop-Button rot — Standard XML-Button Selektor */
+.o_form_view button[name="action_timer_stop"] {
     background-color: #dc3545 !important;
     border-color: #dc3545 !important;
     color: #fff !important;
@@ -21,4 +14,13 @@
 .o_form_view button[name="action_timer_stop"]:hover {
     background-color: #c82333 !important;
     border-color: #bd2130 !important;
+}
+
+/* Stop-Button rot — OWL Widget Selektor (Odoo 19) */
+.o_form_view .o_timer_stop,
+.o_form_view [name="timer_stop"],
+.o_form_view .o_task_action_timer_stop {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
 }
