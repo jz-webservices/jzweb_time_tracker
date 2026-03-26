@@ -4,6 +4,17 @@
 
 Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins Projekt-Timesheet.
 
+## ⚠️ Wichtiger Hinweis zur Zeiterfassung
+
+Zeiteinträge können **ausschließlich** auf zwei Wegen erfasst werden:
+
+1. **Time Tracker Systray-Button** (oben rechts in der Menüleiste) — Timer starten, laufen lassen, stoppen
+2. **Manueller Eintrag im Projekt-Timesheet** (Aufgabe → Zeiterfassung → Zeile hinzufügen)
+
+> Der native Odoo-Start-Button in der Aufgaben-Ansicht ist **deaktiviert**. Zeiterfassung über den Projekttask-Button ist nicht möglich. Bitte ausschließlich den Time Tracker Systray-Button oder manuelle Einträge verwenden.
+
+---
+
 ## Funktionen
 
 - **Systray-Timer**: Start/Stopp direkt aus der Odoo-Oberfläche (oben rechts)
@@ -53,7 +64,7 @@ Unter **Einstellungen → Time Tracker**:
 
 > Die Stoppzeit im TimeTracker selbst bleibt immer exakt. Die Rundung wirkt nur auf den `unit_amount`-Wert im Projekt-Timesheet.
 
-> Der Standardwert wird bei jedem Modul-Upgrade automatisch auf **Keine Rundung** zurückgesetzt.
+> Der Standardwert wird nur bei der **Erstinstallation** auf **Keine Rundung** gesetzt. Nachträgliche Änderungen durch den Administrator bleiben bei Upgrades erhalten.
 
 ## Voraussetzungen
 
@@ -81,6 +92,7 @@ Unter **Einstellungen → Time Tracker**:
 
 | Version | Änderung |
 |---|---|
+| 1.17.0 | Projekttask-Startbutton deaktiviert; Rounding-Reset nur noch bei Erstinstall |
 | 1.12.0 | Projekt-Timesheet Synchronisation: Einträge im Projekt erzeugen automatisch Time Tracker Einträge |
 | 1.10.0 | Manuelle Nacherfassung: Start + End manuell eingeben → direkt als erledigt speichern |
 | 1.9.0 | Task-Dropdown filtert abgeschlossene/stornierte Tasks heraus |
