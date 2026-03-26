@@ -144,7 +144,7 @@ class TimeEntry(models.Model):
             )
         self.write({
             'state': 'running',
-            'start_datetime': fields.Datetime.now(),
+            'start_datetime': self.start_datetime or fields.Datetime.now(),
             'end_datetime': False,
         })
 
