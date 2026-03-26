@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '19.0.1.17.0',
+    'version': '19.0.1.18.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -10,6 +10,7 @@
         calendar for each time entry.
     """,
     'author': 'Time Tracker',
+    'icon': '/jzweb_time_tracker/static/description/icon.png',
     'license': 'LGPL-3',
     'depends': ['base', 'project', 'calendar', 'hr_timesheet'],
     'data': [
