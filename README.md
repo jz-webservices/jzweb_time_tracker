@@ -14,6 +14,17 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 - **Dauern-Rundung**: Die exakte Stoppzeit bleibt erhalten – die gebuchte Dauer im Timesheet wird optional aufgerundet
 - **Manuelle Nacherfassung**: Vergessene Zeiten können nachgetragen werden – Start- und Endzeit manuell eingeben, Eintrag wird direkt als erledigt gespeichert
 
+### Manuelle Nacherfassung – Schritt für Schritt
+
+1. Im Time Tracker einen **neuen Eintrag anlegen**
+2. Titel, Projekt und Task auswählen
+3. **Startzeit** manuell eintragen (z. B. `09:00`)
+4. **Endzeit** manuell eintragen (z. B. `10:30`)
+5. Sobald beide Zeiten eingetragen sind, erscheint der Button **„Eintrag speichern"**
+6. Klick auf **„Eintrag speichern"** → Eintrag wird sofort als erledigt gespeichert, Timesheet-Buchung und Kalenderblock werden automatisch erstellt
+
+> **Hinweis:** Solange nur die Startzeit eingetragen ist, erscheint stattdessen der Button **„Timer starten"** — der Timer läuft dann ab der eingetragenen Startzeit.
+
 ## Einstellungen
 
 Unter **Einstellungen → Time Tracker**:
