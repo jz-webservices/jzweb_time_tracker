@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '19.0.1.11.0',
+    'version': '19.0.1.12.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -23,7 +23,6 @@
         'views/time_entry_graph.xml',
         'views/menu.xml',
         'views/res_config_settings_views.xml',
-        'views/account_analytic_line_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
