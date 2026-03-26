@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models
 
+RELOAD = {'type': 'ir.actions.client', 'tag': 'reload'}
+
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
@@ -14,7 +16,9 @@ class ProjectTask(models.Model):
         if running:
             running.action_stop()
 
-        res = super().action_timer_start()
+        # from_time_tracker verhindert, dass die Live-Timesheet-Zeile von Odoo
+        # unseren Sync auslöst und einen Doppeleintrag erstellt
+        super(ProjectTask, self.with_context(from_time_tracker=True)).action_timer_start()
 
         # Neuen Time Tracker Eintrag starten
         employee = self.env['hr.employee'].search(
@@ -30,7 +34,8 @@ class ProjectTask(models.Model):
                 'state': 'running',
                 'start_datetime': fields.Datetime.now(),
             })
-        return res
+
+        return RELOAD
 
     def action_timer_stop(self):
         # Laufenden Time Tracker Eintrag für diese Aufgabe suchen
@@ -42,11 +47,11 @@ class ProjectTask(models.Model):
         end_time = fields.Datetime.now()
 
         if running_entry:
-            # Odoo stoppt den Timer und erstellt die analytic line —
-            # from_time_tracker verhindert, dass unser Sync einen Doppeleintrag anlegt
-            res = super(ProjectTask, self.with_context(from_time_tracker=True)).action_timer_stop()
+            # Odoo finalisiert die Live-Timesheet-Zeile —
+            # from_time_tracker verhindert Doppeleintrag durch unseren Sync
+            super(ProjectTask, self.with_context(from_time_tracker=True)).action_timer_stop()
 
-            # Neu erstellte analytic line suchen und mit dem Time Tracker Eintrag verknüpfen
+            # Finalisierte analytic line suchen und mit dem Time Tracker Eintrag verknüpfen
             new_line = self.env['account.analytic.line'].search([
                 ('task_id', '=', self.id),
                 ('time_entry_id', '=', False),
@@ -63,6 +68,6 @@ class ProjectTask(models.Model):
                 )
         else:
             # Kein laufender Time Tracker Eintrag → normaler Ablauf inkl. Sync
-            res = super().action_timer_stop()
+            super().action_timer_stop()
 
-        return res
+        return RELOAD
