@@ -13,6 +13,7 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 - **Listen-, Pivot- und Graphansicht**: Auswertungen nach Projekt, Mitarbeiter, Kunde und Zeitraum
 - **Dauern-Rundung**: Die exakte Stoppzeit bleibt erhalten – die gebuchte Dauer im Timesheet wird optional aufgerundet
 - **Manuelle Nacherfassung**: Vergessene Zeiten können nachgetragen werden – Start- und Endzeit manuell eingeben, Eintrag wird direkt als erledigt gespeichert
+- **Projekt-Timesheet Synchronisation**: Wird ein Zeiteintrag direkt im Projekt-Timesheet angelegt, erstellt der Time Tracker automatisch einen passenden Eintrag im Kalender
 
 ### Manuelle Nacherfassung – Schritt für Schritt
 
@@ -24,6 +25,19 @@ Odoo-Modul zur einfachen Start/Stopp-Zeiterfassung mit automatischer Buchung ins
 6. Klick auf **„Eintrag speichern"** → Eintrag wird sofort als erledigt gespeichert, Timesheet-Buchung und Kalenderblock werden automatisch erstellt
 
 > **Hinweis:** Solange nur die Startzeit eingetragen ist, erscheint stattdessen der Button **„Timer starten"** — der Timer läuft dann ab der eingetragenen Startzeit.
+
+### Projekt-Timesheet Synchronisation
+
+Wird ein Zeiteintrag direkt im Projekt-Timesheet (Aufgabe → Zeiterfassung) angelegt, wird automatisch ein entsprechender Time Tracker Eintrag erstellt:
+
+- Die **Startzeit** wird automatisch nach dem letzten Eintrag des Tages für den jeweiligen Mitarbeiter berechnet
+- Gibt es noch keinen Eintrag für diesen Tag, wird **08:00 Uhr** als Startzeit verwendet
+- Die **Endzeit** ergibt sich aus Startzeit + gebuchter Dauer
+
+**Startzeit nachträglich anpassen:**
+1. Im Time Tracker den automatisch erstellten Eintrag öffnen
+2. Die **Startzeit** auf den gewünschten Wert setzen und speichern
+3. Die Änderung wird automatisch ins Projekt-Timesheet übernommen
 
 ## Einstellungen
 
@@ -67,6 +81,7 @@ Unter **Einstellungen → Time Tracker**:
 
 | Version | Änderung |
 |---|---|
+| 1.12.0 | Projekt-Timesheet Synchronisation: Einträge im Projekt erzeugen automatisch Time Tracker Einträge |
 | 1.10.0 | Manuelle Nacherfassung: Start + End manuell eingeben → direkt als erledigt speichern |
 | 1.9.0 | Task-Dropdown filtert abgeschlossene/stornierte Tasks heraus |
 | 1.8.0 | Zeitaufrollung wird bei Upgrade automatisch auf 0 zurückgesetzt |
