@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Startzeit-Feld in der Timesheet-Tabelle (Aufgaben-Formular) -->
+    <record id="view_timesheet_jzweb_tt_tree" model="ir.ui.view">
+        <field name="name">account.analytic.line.jzweb.tt.tree</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_id_with_links"/>
+        <field name="arch" type="xml">
+            <field name="unit_amount" position="before">
+                <field name="time_tracker_start" optional="show" widget="datetime" string="Startzeit"/>
+            </field>
+        </field>
+    </record>
+</odoo>
