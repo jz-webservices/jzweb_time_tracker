@@ -11,7 +11,14 @@
                         string="Timer starten"
                         type="object"
                         class="btn-primary"
-                        invisible="state != 'draft'"
+                        invisible="state != 'draft' or end_datetime"
+                    />
+                    <button
+                        name="action_complete"
+                        string="Eintrag speichern"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft' or not start_datetime or not end_datetime"
                     />
                     <button
                         name="action_stop"

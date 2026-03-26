@@ -29,7 +29,7 @@ class TimeEntry(models.Model):
     task_id = fields.Many2one(
         'project.task',
         string='Task',
-        domain="[('project_id', '=', project_id)]",
+        domain="[('project_id', '=', project_id), ('stage_id.fold', '=', False)]",
         index=True,
     )
     start_datetime = fields.Datetime(
@@ -144,7 +144,7 @@ class TimeEntry(models.Model):
             )
         self.write({
             'state': 'running',
-            'start_datetime': fields.Datetime.now(),
+            'start_datetime': self.start_datetime or fields.Datetime.now(),
             'end_datetime': False,
         })
 
@@ -161,13 +161,14 @@ class TimeEntry(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if 'start_datetime' in vals or 'end_datetime' in vals:
-            for rec in self:
-                if rec.state == 'done' and rec.timesheet_id:
-                    rec.timesheet_id.write({
-                        'unit_amount': rec._get_rounded_unit_amount(rec.duration),
-                        'date': (rec.end_datetime or rec.start_datetime).date(),
-                    })
+        if not self.env.context.get('from_analytic_line'):
+            if 'start_datetime' in vals or 'end_datetime' in vals:
+                for rec in self:
+                    if rec.state == 'done' and rec.timesheet_id:
+                        rec.timesheet_id.with_context(from_time_tracker=True).write({
+                            'unit_amount': rec._get_rounded_unit_amount(rec.duration),
+                            'date': (rec.end_datetime or rec.start_datetime).date(),
+                        })
         return res
 
     def action_stop(self):
@@ -190,14 +191,14 @@ class TimeEntry(models.Model):
 
     def _create_timesheet(self):
         if self.timesheet_id:
-            self.timesheet_id.write({
+            self.timesheet_id.with_context(from_time_tracker=True).write({
                 'name': self.name,
                 'unit_amount': self._get_rounded_unit_amount(self.duration),
                 'date': (self.end_datetime or fields.Datetime.now()).date(),
             })
             return
         if self.project_id and self.employee_id:
-            timesheet = self.env['account.analytic.line'].create({
+            timesheet = self.env['account.analytic.line'].with_context(from_time_tracker=True).create({
                 'name': self.name,
                 'project_id': self.project_id.id,
                 'task_id': self.task_id.id if self.task_id else False,

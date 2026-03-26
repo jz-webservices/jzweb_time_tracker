@@ -45,7 +45,7 @@ class TimerStartDialog extends Component {
         if (projectId) {
             this.state.tasks = await this.orm.searchRead(
                 "project.task",
-                [["project_id", "=", projectId]],
+                [["project_id", "=", projectId], ["stage_id.fold", "=", false]],
                 ["id", "name"],
                 { limit: 200, order: "name asc" }
             );
