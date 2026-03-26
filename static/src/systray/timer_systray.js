@@ -98,11 +98,16 @@ class TimerSystray extends Component {
             elapsed: "",
         });
         this._interval = null;
+        this._pollInterval = null;
 
         onWillStart(() => this._fetchRunning());
         onWillUnmount(() => {
             if (this._interval) clearInterval(this._interval);
+            if (this._pollInterval) clearInterval(this._pollInterval);
         });
+
+        // Alle 5 Sekunden prüfen ob ein Timer extern gestartet/gestoppt wurde
+        this._pollInterval = setInterval(() => this._fetchRunning(), 5000);
     }
 
     async _fetchRunning() {

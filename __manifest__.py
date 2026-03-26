@@ -1,6 +1,6 @@
 {
     'name': 'Time Tracker',
-    'version': '19.0.1.15.0',
+    'version': '19.0.1.16.0',
     'category': 'Productivity',
     'summary': 'Simple start/stop time tracking with calendar view',
     'description': """
@@ -26,6 +26,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'jzweb_time_tracker/static/src/css/timer_backend.css',
             'jzweb_time_tracker/static/src/systray/timer_systray.js',
             'jzweb_time_tracker/static/src/systray/timer_systray.xml',
         ],
