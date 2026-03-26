@@ -52,7 +52,7 @@
         id="menu_time_tracker_root"
         name="Time Tracker"
         sequence="90"
-        web_icon="time_tracker,static/description/icon.svg"
+        web_icon="jzweb_time_tracker,static/description/icon.png"
     />
 
     <!-- Sub-Menus -->
